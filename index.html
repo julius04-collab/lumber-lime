@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumber & Lime Interiors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: film hero → zoom-reveal → tall-panel spaces → stacking project cards → day-light kitchen → moving gallery → photo-led process → FAQ → planner over photo → wordmark footer */
+:root{
+  --pine:#0B1716; --pine-2:#132624;
+  --lime:#ECEDE6; --lime-2:#E1E4DB;
+  --ink:#10201F; --ink-soft:#4E5C59; --rule:#C9CFC6;
+  --mist:#F3EFE8; --mist-dim:rgba(243,239,232,.7);
+  --glass:rgba(16,30,29,.42); --glass-line:rgba(243,239,232,.18);
+  --ember:#E9A15C; --ember-ink:#A9622A;
+  --wordmark:"Italiana","Didot","Bodoni 72",Georgia,serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(16px,4vw,56px);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--lime);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:var(--gut)}
+.label{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase}
+.h2{font-family:var(--wordmark);font-weight:400;font-size:clamp(2.4rem,5.6vw,4.8rem);line-height:1;margin:0;text-wrap:balance}
+.h2 em{font-style:italic;color:var(--ember-ink)}
+.dark .h2 em{color:var(--ember)}
+section{position:relative}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(32px,4.4vw,56px)}
+.sec-head .label{display:block;margin-bottom:18px;color:var(--ember-ink)}
+.sec-head p{max-width:38ch;margin:0;color:var(--ink-soft)}
+.dark .sec-head .label{color:var(--ember)}
+.dark .sec-head p{color:var(--mist-dim)}
+
+/* chrome */
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--ember);z-index:70}
+.bar{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translate(-50%,-170%);z-index:60;display:flex;align-items:center;gap:clamp(10px,2vw,28px);padding:8px 8px 8px 20px;border-radius:999px;background:rgba(11,23,22,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--mist);transition:transform .5s var(--ease);width:max-content;max-width:calc(100% - 32px)}
+.bar.show{transform:translate(-50%,0)}
+.bar .logo{font-size:.9rem}
+.bar nav{display:flex;gap:4px}
+.bar nav a{color:var(--mist-dim);text-decoration:none;font-size:.82rem;padding:7px 12px;border-radius:999px;transition:color .2s,background .2s}
+.bar nav a:hover,.bar nav a.on{color:var(--mist);background:rgba(243,239,232,.1)}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font:600 .84rem var(--body);padding:11px 18px;border-radius:999px;background:var(--mist);color:var(--pine);border:0;cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.pill:hover{background:var(--ember)}
+.pill.ghost{background:transparent;color:var(--mist);border:1px solid var(--glass-line)}
+.pill.ghost:hover{background:var(--mist);color:var(--pine)}
+.cursor{position:fixed;left:0;top:0;width:86px;height:86px;margin:-43px 0 0 -43px;border-radius:50%;background:var(--ember);color:var(--pine);display:grid;place-items:center;font:600 .74rem var(--body);letter-spacing:.04em;pointer-events:none;z-index:80;transform:scale(0);transition:transform .35s var(--ease)}
+.cursor.on{transform:scale(1)}
+
+/* ---------- HERO ---------- */
+.hero-shell{padding:clamp(10px,1.4vw,20px);background:var(--pine)}
+.hero{position:relative;height:calc(100svh - clamp(20px,2.8vw,40px));min-height:600px;max-height:980px;border-radius:clamp(14px,2vw,26px);overflow:hidden;isolation:isolate;display:grid;grid-template-rows:auto 1fr auto;background:#0E1C1B url(poster.jpg) center/cover no-repeat;color:var(--mist);transform-origin:50% 0}
+.film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(8,16,15,.55) 0%,rgba(8,16,15,0) 22%,rgba(8,16,15,0) 52%,rgba(8,16,15,.72) 100%),radial-gradient(ellipse at center,rgba(8,16,15,0) 40%,rgba(8,16,15,.35) 100%)}
+.topnav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(18px,2.4vw,30px) clamp(18px,3vw,44px)}
+.logo{color:inherit;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.links{display:flex;gap:6px;list-style:none;margin:0;padding:5px;border:1px solid var(--glass-line);border-radius:999px;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.links a{display:block;color:var(--mist-dim);text-decoration:none;font-size:.84rem;padding:7px 16px;border-radius:999px;transition:color .2s,background .2s}
+.links a:hover{color:var(--mist)}
+.links a[aria-current="page"]{background:var(--mist);color:var(--pine);font-weight:600}
+.menu{display:none;border:1px solid var(--glass-line);background:var(--glass);color:var(--mist);border-radius:999px;padding:9px 16px;font:600 .82rem var(--body)}
+.centre{display:grid;place-items:center;align-content:center;gap:clamp(10px,1.4vw,18px);text-align:center;padding-inline:16px}
+.kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--mist-dim);margin:0}
+h1{font-family:var(--wordmark);font-weight:400;margin:0;line-height:.9;letter-spacing:.04em;font-size:clamp(3.4rem,12.5vw,11.5rem);text-shadow:0 2px 40px rgba(0,0,0,.25);display:flex;flex-wrap:wrap;justify-content:center;column-gap:.18em}
+h1 .w{display:inline-flex;overflow:hidden;padding-bottom:.06em}
+h1 .ch{display:inline-block;animation:rise 1.1s var(--ease) both;animation-delay:calc(.35s + var(--i) * 45ms)}
+h1 .amp{font-style:italic;color:var(--ember)}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.foot{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:24px;padding:0 clamp(18px,3vw,44px) clamp(18px,2.6vw,34px)}
+.pitch{display:flex;gap:clamp(18px,3vw,44px);align-items:flex-end;flex-wrap:wrap;min-width:0}
+.tag{font-size:clamp(1.25rem,1.9vw,1.7rem);font-weight:500;letter-spacing:-.02em;margin:0;line-height:1.1}
+.tag span{color:var(--ember)}
+.pitch p{margin:0;max-width:30ch;color:var(--mist-dim);font-size:.9rem}
+.cue{display:grid;justify-items:center}
+.scroll{width:54px;height:54px;border-radius:50%;background:var(--mist);color:var(--pine);display:grid;place-items:center;text-decoration:none;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(5px)}}
+.right{display:flex;flex-direction:column;align-items:flex-end;gap:14px;min-width:0}
+.card{display:grid;grid-template-columns:96px 1fr;gap:14px;width:min(340px,100%);padding:10px;border-radius:16px;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--mist);text-decoration:none;transition:border-color .25s,transform .25s}
+.card:hover{border-color:rgba(233,161,92,.6);transform:translateY(-2px)}
+.card img{width:96px;height:100%;min-height:92px;object-fit:cover;border-radius:10px}
+.card .meta{display:flex;flex-direction:column;gap:4px;min-width:0;padding-block:2px}
+.card .eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
+.card strong{font-weight:600;font-size:.98rem}
+.card small{color:var(--mist-dim);font-size:.78rem;line-height:1.4}
+.card .go{margin-top:auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase}
+.track{display:flex;align-items:center;gap:14px;width:min(340px,100%)}
+.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;flex:1}
+.chap{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mist-dim);transition:color .3s}
+.chap.on{color:var(--mist)}
+.chap .b{height:2px;background:rgba(243,239,232,.22);border-radius:2px;overflow:hidden}
+.chap i{display:block;height:100%;width:0;background:var(--mist)}
+.pp{width:30px;height:30px;flex:none;border-radius:50%;border:1px solid var(--glass-line);background:var(--glass);color:var(--mist);display:grid;place-items:center;cursor:pointer;padding:0}
+
+/* ---------- ZOOM REVEAL ---------- */
+.reveal{background:var(--lime);height:290vh}
+.rv-pin{position:sticky;top:0;height:100vh;min-height:560px;overflow:hidden}
+.rv-cap{opacity:0}
+.rv-img{position:absolute;inset:0;clip-path:inset(17% 35% 17% 35% round 18px);will-change:clip-path}
+.rv-img img{width:100%;height:100%;object-fit:cover;object-position:46% 50%;transform:scale(1.35);will-change:transform}
+.rv-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,15,0) 30%,rgba(8,16,15,.55) 58%,rgba(8,16,15,.92) 100%);opacity:var(--shade,0)}
+.rv-top{position:absolute;top:clamp(28px,6vh,64px);left:0;right:0;text-align:center;display:grid;gap:10px;justify-items:center;padding-inline:var(--gut)}
+.rv-top .label{color:var(--ember-ink)}
+.rv-top p{margin:0;max-width:44ch;color:var(--ink-soft);font-size:.95rem}
+.rv-words{position:absolute;inset:0;display:grid;grid-template-columns:1fr 32% 1fr;align-items:center;pointer-events:none;margin:0;font-family:var(--wordmark);font-weight:400;font-size:clamp(2.2rem,6.4vw,6.6rem);line-height:.95}
+.rv-words .l{text-align:right;padding-right:clamp(16px,2.6vw,44px)}
+.rv-words .r{grid-column:3;padding-left:clamp(16px,2.6vw,44px);font-style:italic;color:var(--ember-ink)}
+.rv-cap{position:absolute;z-index:2;left:0;right:0;bottom:0;color:var(--mist);text-shadow:0 2px 18px rgba(0,0,0,.55);padding:0 var(--gut) clamp(28px,5vh,56px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.rv-cap h3{margin:8px 0 0;font-family:var(--wordmark);font-weight:400;font-size:clamp(2rem,4.4vw,3.8rem);line-height:1}
+.rv-cap .label{color:var(--ember);font-size:.78rem}
+.rv-stats{display:flex;gap:clamp(20px,4vw,56px)}
+.rv-stats b{display:block;font-family:var(--wordmark);font-weight:400;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.rv-stats span{font-size:.82rem;color:rgba(243,239,232,.88)}
+
+/* ---------- SPACES (panel accordion) ---------- */
+.spaces{padding-block:clamp(80px,11vw,140px)}
+.panels{display:flex;gap:10px;height:clamp(480px,74vh,740px)}
+.panel{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;cursor:pointer;color:var(--mist);transition:flex .8s var(--ease);background:var(--pine)}
+.panel.on{flex:4.4}
+.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 1.4s var(--ease),filter .6s}
+.panel:not(.on) img{filter:brightness(.72) saturate(.85)}
+.panel.on img{transform:scale(1)}
+.panel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,15,.1) 40%,rgba(8,16,15,.82) 100%)}
+.panel .vl{position:absolute;z-index:2;left:50%;bottom:24px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--wordmark);font-size:clamp(1.3rem,1.8vw,1.7rem);white-space:nowrap;transition:opacity .4s}
+.panel.on .vl{opacity:0}
+.panel .info{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:clamp(20px,2.6vw,34px);opacity:0;transform:translateY(24px);transition:opacity .5s,transform .7s var(--ease);pointer-events:none}
+.panel.on .info{opacity:1;transform:none;transition-delay:.25s;pointer-events:auto}
+.panel .info .label{color:var(--ember)}
+.panel h3{margin:8px 0 10px;font-family:var(--wordmark);font-weight:400;font-size:clamp(2rem,3.6vw,3.2rem);line-height:1}
+.panel p{margin:0;max-width:42ch;color:var(--mist-dim);font-size:.95rem}
+.panel ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:16px 0 0}
+.panel li{font-size:.76rem;padding:6px 12px;border:1px solid var(--glass-line);border-radius:999px;background:rgba(11,23,22,.35);backdrop-filter:blur(6px)}
+
+/* ---------- PROJECT STACK ---------- */
+.work{background:var(--pine);color:var(--mist);padding-block:clamp(80px,11vw,140px) clamp(40px,6vw,80px)}
+.stack{display:flex;flex-direction:column;gap:7vh}
+.proj{position:sticky;top:calc(84px + var(--i) * 18px);height:min(78svh,700px);min-height:520px;border-radius:24px;overflow:hidden;background:var(--pine-2);border:1px solid var(--glass-line);display:grid;grid-template-columns:1.1fr 1fr;transform-origin:50% 0;will-change:transform}
+.proj .ph{position:relative;overflow:hidden;min-height:0}
+.proj .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
+.proj .shade{position:absolute;inset:0;background:var(--pine);opacity:0;pointer-events:none;z-index:3}
+.proj .txt{display:flex;flex-direction:column;gap:16px;padding:clamp(24px,3.4vw,52px);min-width:0;overflow:auto}
+.proj .count{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;color:var(--mist-dim)}
+.proj h3{margin:0;font-family:var(--wordmark);font-weight:400;font-size:clamp(2.2rem,4.4vw,4rem);line-height:.98}
+.proj .loc{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ember)}
+.proj p{margin:0;color:var(--mist-dim);max-width:44ch}
+.proj dl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:auto 0 0;padding-top:18px;border-top:1px solid var(--glass-line)}
+.proj dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dim)}
+.proj dd{margin:4px 0 0;font-size:.92rem;font-weight:500}
+.proj .acts{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ---------- LIGHT ---------- */
+.light{padding-block:clamp(80px,11vw,150px)}
+.light-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.light-copy p{color:var(--ink-soft);max-width:40ch}
+.light-copy .label{color:var(--ember-ink);display:block;margin-bottom:20px}
+.clock{display:flex;align-items:baseline;gap:14px;margin:28px 0 6px;flex-wrap:wrap}
+.clock b{font-family:var(--wordmark);font-weight:400;font-size:clamp(3rem,6vw,4.8rem);line-height:1;font-variant-numeric:tabular-nums}
+.clock span{color:var(--ink-soft)}
+.slider{margin-top:18px}
+.slider input{width:100%;accent-color:var(--ember-ink);height:28px;cursor:grab}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.64rem;color:var(--ink-soft);letter-spacing:.08em}
+.light-ctrl{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.chip{border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:999px;padding:9px 14px;font:500 .82rem var(--body);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+.room{position:relative;width:100%;max-width:540px;justify-self:center;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--pine);box-shadow:0 40px 80px -40px rgba(11,23,22,.45)}
+.room img{width:100%;height:100%;object-fit:cover}
+.room .tint,.room .lamp,.room .sky{position:absolute;inset:0;pointer-events:none}
+.room .tint{mix-blend-mode:soft-light}
+.room .sky{background:radial-gradient(ellipse 40% 30% at 45% 38%,rgba(255,236,200,.55),transparent 70%);mix-blend-mode:screen}
+.room .lamp{background:
+  radial-gradient(circle at 9% 27%,rgba(255,190,110,.95),rgba(255,160,70,.35) 9%,transparent 24%),
+  radial-gradient(circle at 22% 35%,rgba(255,190,110,.9),rgba(255,160,70,.3) 8%,transparent 22%),
+  radial-gradient(ellipse 34% 18% at 18% 66%,rgba(255,170,90,.55),transparent 70%),
+  radial-gradient(circle at 89% 10%,rgba(255,220,170,.7),transparent 8%);mix-blend-mode:screen}
+.room .stamp{position:absolute;right:14px;top:14px;background:rgba(11,23,22,.65);color:var(--mist);border-radius:999px;padding:7px 12px;backdrop-filter:blur(6px)}
+
+/* ---------- GALLERY MARQUEE ---------- */
+.gallery{background:var(--lime-2);padding-block:clamp(80px,10vw,130px);overflow:hidden}
+.rows{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:16px;width:max-content;will-change:transform}
+.tile{position:relative;flex:none;width:clamp(200px,21vw,310px);aspect-ratio:3/4;border-radius:16px;overflow:hidden;margin:0;background:var(--pine)}
+.row.b .tile{width:clamp(240px,27vw,400px);aspect-ratio:4/3}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.tile:hover img{transform:scale(1.06)}
+.tile figcaption{position:absolute;left:12px;bottom:12px;background:rgba(11,23,22,.7);color:var(--mist);backdrop-filter:blur(6px);border-radius:999px;padding:7px 12px;font-size:.76rem;transform:translateY(8px);opacity:0;transition:opacity .3s,transform .4s var(--ease)}
+.tile:hover figcaption,.tile:focus-within figcaption{opacity:1;transform:none}
+
+/* ---------- PROCESS ---------- */
+.process{padding-block:clamp(80px,11vw,150px)}
+.proc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,96px);align-items:start}
+.proc-media{position:sticky;top:96px;aspect-ratio:4/5;max-width:100%;border-radius:22px;overflow:hidden;background:var(--pine)}
+.proc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);transition:opacity .8s ease,transform 1.6s var(--ease)}
+.proc-media img.on{opacity:1;transform:scale(1)}
+.proc-media .badge{position:absolute;left:16px;top:16px;z-index:2;background:var(--mist);color:var(--ink);border-radius:999px;padding:8px 14px}
+.proc-media .big{position:absolute;right:18px;bottom:6px;z-index:2;font-family:var(--wordmark);font-size:clamp(5rem,10vw,9rem);line-height:1;color:var(--mist);text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.steps{list-style:none;margin:0;padding:0}
+.step{padding:clamp(28px,4vw,44px) 0;border-top:1px solid var(--rule);opacity:.42;transition:opacity .5s}
+.step:last-child{border-bottom:1px solid var(--rule)}
+.step.on{opacity:1}
+.step .label{color:var(--ember-ink)}
+.step h3{font-family:var(--wordmark);font-weight:400;font-size:clamp(1.9rem,3.2vw,2.7rem);margin:10px 0 12px;line-height:1.05}
+.step p{margin:0;color:var(--ink-soft);max-width:46ch}
+.step img{display:none;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin-top:18px}
+
+/* ---------- FAQ ---------- */
+.faq{padding-block:0 clamp(80px,11vw,150px)}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,6vw,96px)}
+.faq-grid>div:first-child p{color:var(--ink-soft);max-width:34ch}
+details{border-bottom:1px solid var(--rule)}
+details:first-of-type{border-top:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 2px;font-size:clamp(1.05rem,1.6vw,1.22rem);font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary .plus{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--rule);display:grid;place-items:center;transition:transform .35s,background .3s}
+details[open] summary .plus{transform:rotate(45deg);background:var(--ink);color:var(--lime);border-color:var(--ink)}
+details .ans{padding:0 2px 22px;color:var(--ink-soft);max-width:60ch;margin:0}
+
+/* ---------- PLANNER ---------- */
+.planner{color:var(--mist);padding-block:clamp(90px,12vw,160px);overflow:hidden;background:var(--pine);isolation:isolate}
+.planner .bg{position:absolute;inset:-12% 0;z-index:-2}
+.planner .bg img{width:100%;height:100%;object-fit:cover}
+.planner::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(11,23,22,.94) 0%,rgba(11,23,22,.86) 55%,rgba(11,23,22,.6) 100%)}
+.plan-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(28px,5vw,72px);align-items:start}
+.plan-form{display:flex;flex-direction:column;gap:30px;min-width:0}
+.q legend,.q>label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dim);margin-bottom:14px;padding:0}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:1px solid var(--glass-line);border-radius:999px;padding:10px 16px;font-size:.88rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;user-select:none;background:rgba(11,23,22,.35)}
+.chips label:hover{border-color:var(--mist)}
+.chips input:checked+label{background:var(--mist);color:var(--pine);border-color:var(--mist)}
+.chips input:focus-visible+label{outline:2px solid var(--ember);outline-offset:2px}
+.budget{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.budget b{font-family:var(--wordmark);font-weight:400;font-size:clamp(2rem,3.6vw,2.8rem);font-variant-numeric:tabular-nums}
+.budget span{color:var(--mist-dim);font-size:.85rem}
+input[type=range]{width:100%;accent-color:var(--ember)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fields label{display:flex;flex-direction:column;gap:8px;font-size:.8rem;color:var(--mist-dim)}
+.fields input{background:transparent;border:0;border-bottom:1px solid var(--glass-line);color:var(--mist);font:500 1rem var(--body);padding:10px 0;border-radius:0}
+.fields input::placeholder{color:rgba(243,239,232,.35)}
+.fields input:focus{outline:none;border-bottom-color:var(--ember)}
+.fields .wide{grid-column:1/-1}
+.brief{position:sticky;top:96px;background:rgba(19,38,36,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-line);border-radius:20px;padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:18px}
+.brief h3{margin:0;font-family:var(--wordmark);font-weight:400;font-size:1.9rem}
+.brief dl{margin:0;display:grid;gap:14px}
+.brief dl div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--glass-line);padding-bottom:12px}
+.brief dt{color:var(--mist-dim);font-size:.85rem}
+.brief dd{margin:0;text-align:right;font-weight:600;font-size:.9rem}
+.brief .est{font-size:.85rem;color:var(--mist-dim);margin:0}
+.brief .est b{color:var(--ember);font-weight:600}
+.brief .note{font-size:.78rem;color:var(--mist-dim);margin:0}
+.done{display:none;text-align:center;padding-block:10px}
+.brief.sent .done{display:block}
+.brief.sent .pre{display:none}
+.done b{display:block;font-family:var(--wordmark);font-weight:400;font-size:2rem;margin-bottom:6px}
+.err{color:var(--ember);font-size:.82rem;margin:0}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--pine);color:var(--mist);padding-block:clamp(40px,6vw,80px) 28px;border-top:1px solid var(--glass-line);overflow:hidden}
+.f-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
+.f-top h4{margin:0 0 14px;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mist-dim);font-weight:400}
+.f-top p,.f-top a{margin:0;color:var(--mist);text-decoration:none;font-size:.92rem;line-height:1.9}
+.f-top a:hover{color:var(--ember)}
+.f-top ul{list-style:none;margin:0;padding:0}
+.bigmark{font-family:var(--wordmark);font-size:clamp(2.8rem,12.5vw,15rem);line-height:.82;letter-spacing:.02em;margin:clamp(40px,7vw,90px) 0 20px;white-space:nowrap;text-align:center}
+.bigmark .amp{font-style:italic;color:var(--ember)}
+.f-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--mist-dim)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .links,.bar nav{display:none}.menu{display:inline-flex}
+  .foot{grid-template-columns:1fr auto}.cue{display:none}
+  .light-grid,.faq-grid,.plan-grid{grid-template-columns:1fr}
+  .brief{position:static}
+  .f-top{grid-template-columns:1fr 1fr}
+  .proc-grid{grid-template-columns:1fr}
+  .proc-media{display:none}
+  .step{opacity:1}
+  .step img{display:block}
+}
+@media (max-width:760px){
+  .panels{flex-direction:column;height:auto}
+  .panel{flex:none;height:96px;transition:height .7s var(--ease)}
+  .panel.on{height:460px}
+  .panel .vl{writing-mode:horizontal-tb;transform:none;left:20px;bottom:auto;top:50%;translate:0 -50%}
+  .proj{grid-template-columns:1fr;grid-template-rows:42% 1fr;height:min(86svh,700px);min-height:600px}
+  .proj .txt{gap:12px}
+  .proj p{font-size:.92rem}
+  .rv-words{grid-template-columns:1fr;grid-template-rows:1fr 46% 1fr;text-align:center}
+  .rv-words .l{text-align:center;padding:0;align-self:end;padding-bottom:14px}
+  .rv-words .r{grid-column:1;grid-row:3;padding:0;align-self:start;padding-top:14px}
+  .rv-img{clip-path:inset(27% 14% 27% 14% round 16px)}
+  .rv-top{top:clamp(20px,4vh,40px)}
+  .rv-top p{display:none}
+}
+@media (max-width:640px){
+  .hero{height:auto;min-height:calc(100svh - 20px)}
+  .topnav .pill{display:none}
+  .foot{grid-template-columns:1fr;gap:20px}
+  .right{align-items:stretch}.card,.track{width:100%}
+  h1{font-size:clamp(3rem,17vw,5rem);flex-direction:column;align-items:center}
+  .fields{grid-template-columns:1fr}
+  .f-top{grid-template-columns:1fr}
+  .bar{padding-left:16px}
+  .rv-stats{gap:18px}
+  .proj dl{grid-template-columns:repeat(3,1fr);gap:8px}
+  .proj dd{font-size:.82rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  h1 .ch,.scroll{animation:none}
+  .panel,.panel img,.panel .info,.proc-media img{transition:none}
+}
+</style>
+</head>
+<body>
+
+
+<div class="progress" id="progress"></div>
+<div class="cursor" id="cursor" aria-hidden="true">View</div>
+
+<div class="bar" id="bar">
+  <a class="logo" href="#top">Lumber &amp; Lime</a>
+  <nav aria-label="Sections">
+    <a href="#spaces">Spaces</a>
+    <a href="#work">Work</a>
+    <a href="#light">Light</a>
+    <a href="#process">Process</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="pill" href="#plan">Plan a room</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<div class="hero-shell">
+<section class="hero" id="top">
+  <video class="film" id="film" src="hero.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <div class="topnav">
+    <a class="logo" href="#top">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M2 20V9l9-7 9 7v11" stroke="currentColor" stroke-width="1.6"/><path d="M8 20v-6h6v6" stroke="currentColor" stroke-width="1.6"/></svg>
+      Lumber &amp; Lime
+    </a>
+    <ul class="links">
+      <li><a href="#top" aria-current="page">Home</a></li>
+      <li><a href="#spaces">Spaces</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#plan">Contact</a></li>
+    </ul>
+    <a class="pill" href="#plan">Book a consultation</a>
+    <button class="menu" type="button" id="menu-btn">Menu</button>
+  </div>
+  <div class="centre" id="hero-centre">
+    <p class="kicker">Interior architecture &amp; design studio</p>
+    <h1 id="wordmark" aria-label="Lumber &amp; Lime">LUMBER &amp; LIME</h1>
+  </div>
+  <div class="foot">
+    <div class="pitch">
+      <p class="tag">Rooms built<br>to be <span>lived in.</span></p>
+      <p>Homes, short-lets and boutique stays shaped around timber, limewash and the way light moves through a day.</p>
+    </div>
+    <div class="cue">
+      <a class="scroll" href="#studio" aria-label="Scroll to the next section">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v12M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg>
+      </a>
+    </div>
+    <div class="right">
+      <div class="track" aria-label="Film chapters">
+        <button class="pp" type="button" id="pp" aria-label="Pause film"><svg id="pp-ico" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"></svg></button>
+        <div class="chapters">
+          <div class="chap" data-s="0" data-e="6.2"><span>Approach</span><div class="b"><i></i></div></div>
+          <div class="chap" data-s="6.2" data-e="9.4"><span>Arrival</span><div class="b"><i></i></div></div>
+          <div class="chap" data-s="9.4" data-e="17"><span>Living room</span><div class="b"><i></i></div></div>
+        </div>
+      </div>
+      <a class="card" href="#work">
+        <img src="thumb.jpg" alt="Living room with a wood stove, limewashed walls and an oak floor" width="96" height="92">
+        <span class="meta">
+          <span class="eyebrow">Featured project</span>
+          <strong>Pine Ridge Cabin</strong>
+          <small>Full interior fit-out · 3 rooms · oak, limewash, cast iron</small>
+          <span class="go">View project ↗</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+</div>
+
+<main>
+<!-- ============ ZOOM REVEAL ============ -->
+<section class="reveal" id="studio">
+  <div class="rv-pin" id="rv-pin">
+    <div class="rv-top">
+      <span class="label">The studio</span>
+      <p>Homes, kitchens and retreats designed around timber, light and the view outside.</p>
+    </div>
+    <h2 class="rv-words" id="rv-words"><span class="l" id="rv-l">Spaces you</span><span class="r" id="rv-r">feel first.</span></h2>
+    <div class="rv-img" id="rv-img">
+      <img src="photos/dining.jpg" alt="Live-edge walnut dining table with spindle-back chairs and painted plates, seen from above in dappled light" id="rv-photo">
+      <div class="rv-cap" id="rv-cap">
+        <div><span class="label">Courtyard Dining</span><h3>Live-edge walnut<br>in dappled shade</h3></div>
+        <div class="rv-stats">
+          <div><b data-count="140" data-suf="+">140+</b><span>Rooms delivered</span></div>
+          <div><b data-count="9" data-suf=" yrs">9 yrs</b><span>From Lagos</span></div>
+          <div><b data-count="38">38</b><span>Local makers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPACES ============ -->
+<section class="spaces wrap" id="spaces">
+  <div class="sec-head">
+    <div><span class="label">Spaces we shape</span><h2 class="h2">Pick a space,<br><em>step inside</em></h2></div>
+    <p>One lead designer from the first site visit to the last cushion, whether it's a single room or a whole retreat.</p>
+  </div>
+  <div class="panels" id="panels">
+    <div class="panel on" role="button" tabindex="0" aria-expanded="true" data-cursor="Open">
+      <img src="photos/lounge.jpg" alt="Lounge with dark timber slat walls, raw concrete and a linen sofa">
+      <span class="vl">Living rooms</span>
+      <div class="info"><span class="label">From 8 weeks</span><h3>Living rooms</h3><p>Slatted timber, raw concrete and soft linen, arranged around how you actually sit, read and host.</p><ul><li>Layouts</li><li>Joinery</li><li>Lighting plan</li><li>Styling</li></ul></div>
+    </div>
+    <div class="panel" role="button" tabindex="0" aria-expanded="false" data-cursor="Open">
+      <img src="photos/kitchen.jpg" alt="Kitchen with walnut worktops, black cabinets and a forest view">
+      <span class="vl">Kitchens</span>
+      <div class="info"><span class="label">From 10 weeks</span><h3>Kitchens</h3><p>Solid walnut tops, matte black cabinetry and pendants placed exactly where you prep and gather.</p><ul><li>Custom cabinetry</li><li>Worktops</li><li>Appliance spec</li></ul></div>
+    </div>
+    <div class="panel" role="button" tabindex="0" aria-expanded="false" data-cursor="Open">
+      <img src="photos/pooldeck.jpg" alt="Timber house with a hardwood pool deck and fire pit lounge">
+      <span class="vl">Outdoor &amp; pool</span>
+      <div class="info"><span class="label">From 8 weeks</span><h3>Outdoor &amp; pool decks</h3><p>Hardwood decking, fire-pit lounges and planting that make the garden the best room in the house.</p><ul><li>Decking</li><li>Fire pits</li><li>Planting</li><li>Night lighting</li></ul></div>
+    </div>
+    <div class="panel" role="button" tabindex="0" aria-expanded="false" data-cursor="Open">
+      <img src="photos/hut.jpg" alt="Round thatched suite with a warm bedroom glowing through open doors">
+      <span class="vl">Retreats &amp; short-lets</span>
+      <div class="info"><span class="label">From 6 weeks</span><h3>Retreats &amp; short-lets</h3><p>Thatch, bamboo and soft lamplight for guest suites that photograph well and book out.</p><ul><li>Durable spec</li><li>Guest inventory</li><li>Listing styling</li></ul></div>
+    </div>
+    <div class="panel" role="button" tabindex="0" aria-expanded="false" data-cursor="Open">
+      <img src="photos/glasshouse.jpg" alt="Glass-gabled timber cabin raised on steel legs in a tropical garden">
+      <span class="vl">Cabins &amp; small builds</span>
+      <div class="info"><span class="label">From 12 weeks</span><h3>Cabins &amp; small builds</h3><p>Garden studios, glass cabins and treehouses, from structure and glazing to the last fitted shelf.</p><ul><li>Concept design</li><li>Glazing</li><li>Fit-out</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK (stacking cards) ============ -->
+<section class="work dark" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Selected work</span><h2 class="h2">Recent <em>projects</em></h2></div>
+      <p>Four projects from the last two years. Scroll and each one settles on top of the last.</p>
+    </div>
+    <div class="stack" id="stack">
+      <article class="proj" style="--i:0" data-cursor="View">
+        <div class="ph"><img src="photos/glasshouse.jpg" alt="Glass-gabled cabin on steel legs surrounded by tropical planting" loading="lazy"></div>
+        <div class="txt">
+          <span class="count">01 / 04</span>
+          <span class="loc">Garden studio · Epe, Lagos</span>
+          <h3>The Glass Gable</h3>
+          <p>A raised garden studio with a fully glazed gable, iroko cladding and steel legs that keep it clear of the rainy-season ground.</p>
+          <dl><div><dt>Size</dt><dd>42 m²</dd></div><div><dt>Timeline</dt><dd>14 weeks</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl>
+          <div class="acts"><a class="pill" href="#plan">Start a project like this</a></div>
+        </div>
+        <div class="shade"></div>
+      </article>
+      <article class="proj" style="--i:1" data-cursor="View">
+        <div class="ph"><img src="photos/kitchen.jpg" alt="Kitchen with walnut island, black cabinetry and pendant lights" loading="lazy"></div>
+        <div class="txt">
+          <span class="count">02 / 04</span>
+          <span class="loc">Kitchen · Ikoyi, Lagos</span>
+          <h3>Forest Kitchen</h3>
+          <p>An L-shaped walnut island, handle-less black cabinets and one wide picture window that turns the treeline into the splashback.</p>
+          <dl><div><dt>Size</dt><dd>28 m²</dd></div><div><dt>Timeline</dt><dd>10 weeks</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+          <div class="acts"><a class="pill" href="#plan">Start a project like this</a></div>
+        </div>
+        <div class="shade"></div>
+      </article>
+      <article class="proj" style="--i:2" data-cursor="View">
+        <div class="ph"><img src="photos/tent.jpg" alt="Canvas tent suite on a raised timber platform under trees" loading="lazy"></div>
+        <div class="txt">
+          <span class="count">03 / 04</span>
+          <span class="loc">Glamping · Ogun State</span>
+          <h3>Canopy Tent Suites</h3>
+          <p>Six canvas suites on raised timber platforms, each with a dining deck above and a shaded picnic table below.</p>
+          <dl><div><dt>Suites</dt><dd>6</dd></div><div><dt>Timeline</dt><dd>9 weeks</dd></div><div><dt>Year</dt><dd>2025</dd></div></dl>
+          <div class="acts"><a class="pill" href="#plan">Start a project like this</a></div>
+        </div>
+        <div class="shade"></div>
+      </article>
+      <article class="proj" style="--i:3" data-cursor="View">
+        <div class="ph"><img src="photos/pooldeck.jpg" alt="Two-storey timber house with a pool and hardwood deck at dusk" loading="lazy"></div>
+        <div class="txt">
+          <span class="count">04 / 04</span>
+          <span class="loc">Residence · Abuja</span>
+          <h3>The Deck House</h3>
+          <p>A plunge pool set into hardwood decking, a sunken fire-pit lounge and warm downlights tucked under every eave.</p>
+          <dl><div><dt>Deck</dt><dd>160 m²</dd></div><div><dt>Timeline</dt><dd>16 weeks</dd></div><div><dt>Year</dt><dd>2026</dd></div></dl>
+          <div class="acts"><a class="pill" href="#plan">Start a project like this</a></div>
+        </div>
+        <div class="shade"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIGHT ============ -->
+<section class="light wrap" id="light">
+  <div class="light-grid">
+    <div class="light-copy">
+      <span class="label">How we design</span>
+      <h2 class="h2">One kitchen,<br><em>every hour</em></h2>
+      <p>We plan every room around its light before choosing a single finish. Drag through the day and watch the walnut, the window and the pendants change.</p>
+      <div class="clock"><b id="clock">13:00</b><span id="clock-note">Bright, even daylight</span></div>
+      <div class="slider">
+        <label for="hour" style="position:absolute;left:-9999px">Time of day</label>
+        <input type="range" id="hour" min="6" max="22" step="0.25" value="13">
+        <div class="ticks"><span>06:00</span><span>10:00</span><span>14:00</span><span>18:00</span><span>22:00</span></div>
+      </div>
+      <div class="light-ctrl">
+        <button class="chip" type="button" data-h="7">Sunrise</button>
+        <button class="chip" type="button" data-h="13" aria-pressed="true">Midday</button>
+        <button class="chip" type="button" data-h="17.75">Golden hour</button>
+        <button class="chip" type="button" data-h="21.5">Pendants on</button>
+        <button class="chip" type="button" id="playday">▶ Play the day</button>
+      </div>
+    </div>
+    <div class="room" id="room">
+      <img src="photos/kitchen.jpg" alt="Kitchen shown at the selected time of day" id="room-img">
+      <div class="sky" id="sky"></div>
+      <div class="tint" id="tint"></div>
+      <div class="lamp" id="lamp" style="opacity:0"></div>
+      <span class="stamp label">Walnut · black oak</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery" aria-label="Gallery">
+  <div class="wrap sec-head">
+    <div><span class="label">On site</span><h2 class="h2">Moments from<br><em>our spaces</em></h2></div>
+    <p>Hover any image to see where it's from. Scroll faster and the gallery speeds up with you.</p>
+  </div>
+  <div class="rows">
+    <div class="row a" id="row-a">
+      <figure class="tile"><img src="photos/lounge.jpg" alt="Lounge with timber slats and concrete" loading="lazy"><figcaption>Slate Lounge · Lekki</figcaption></figure>
+      <figure class="tile"><img src="photos/court.jpg" alt="Hardwood court lit at night in a forest" loading="lazy"><figcaption>Night court · Lighting design</figcaption></figure>
+      <figure class="tile"><img src="photos/hut.jpg" alt="Thatched guest suite at dusk" loading="lazy"><figcaption>Thatch Suite · Badagry</figcaption></figure>
+      <figure class="tile"><img src="photos/tent.jpg" alt="Canvas tent on a timber platform" loading="lazy"><figcaption>Canopy Tents · Ogun</figcaption></figure>
+      <figure class="tile"><img src="photos/glasshouse.jpg" alt="Glass-gabled garden studio" loading="lazy"><figcaption>The Glass Gable · Epe</figcaption></figure>
+      <figure class="tile"><img src="photos/kitchen.jpg" alt="Walnut and black kitchen" loading="lazy"><figcaption>Forest Kitchen · Ikoyi</figcaption></figure>
+      <figure class="tile"><img src="photos/pooldeck.jpg" alt="Pool deck and timber house" loading="lazy"><figcaption>The Deck House · Abuja</figcaption></figure>
+    </div>
+    <div class="row b" id="row-b">
+      <figure class="tile"><img src="photos/pooldeck.jpg" alt="" loading="lazy" style="object-position:50% 70%"><figcaption>Hardwood decking</figcaption></figure>
+      <figure class="tile"><img src="photos/kitchen.jpg" alt="" loading="lazy" style="object-position:30% 60%"><figcaption>Walnut worktop</figcaption></figure>
+      <figure class="tile"><img src="photos/court.jpg" alt="" loading="lazy" style="object-position:50% 55%"><figcaption>Uplit trunks</figcaption></figure>
+      <figure class="tile"><img src="photos/hut.jpg" alt="" loading="lazy" style="object-position:50% 62%"><figcaption>Lantern glow</figcaption></figure>
+      <figure class="tile"><img src="photos/lounge.jpg" alt="" loading="lazy" style="object-position:50% 70%"><figcaption>Linen &amp; velvet</figcaption></figure>
+      <figure class="tile"><img src="photos/glasshouse.jpg" alt="" loading="lazy" style="object-position:30% 75%"><figcaption>Floating stair</figcaption></figure>
+      <figure class="tile"><img src="photos/tent.jpg" alt="" loading="lazy" style="object-position:50% 45%"><figcaption>Canvas &amp; steel</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process wrap" id="process">
+  <div class="sec-head">
+    <div><span class="label">Process</span><h2 class="h2">From first visit<br>to <em>final cushion</em></h2></div>
+    <p>Four stages, one lead designer and a fixed fee agreed before any work starts.</p>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-media" id="proc-media" aria-hidden="true">
+      <img src="photos/court.jpg" alt="" class="on">
+      <img src="photos/lounge.jpg" alt="" loading="lazy">
+      <img src="photos/glasshouse.jpg" alt="" loading="lazy">
+      <img src="photos/hut.jpg" alt="" loading="lazy">
+      <span class="badge label" id="proc-badge">Week 1</span>
+      <span class="big" id="proc-num">1</span>
+    </div>
+    <ol class="steps" id="steps">
+      <li class="step on" data-w="Week 1"><span class="label">Week 1 · On site</span><h3>Discovery visit</h3><p>We measure the space, photograph the light at different hours and walk through how you use every room, what stays and what goes.</p><img src="photos/court.jpg" alt="" loading="lazy"></li>
+      <li class="step" data-w="Weeks 2–3"><span class="label">Weeks 2–3</span><h3>Concept &amp; materials</h3><p>A moodboard, two layout options and a sample box of timbers, fabrics and finishes you can hold in the actual room.</p><img src="photos/lounge.jpg" alt="" loading="lazy"></li>
+      <li class="step" data-w="Weeks 3–5"><span class="label">Weeks 3–5</span><h3>Drawings &amp; sourcing</h3><p>Joinery drawings, a lighting plan and a costed schedule of every item, so you approve the full budget before anything is ordered.</p><img src="photos/glasshouse.jpg" alt="" loading="lazy"></li>
+      <li class="step" data-w="Weeks 6–10"><span class="label">Weeks 6–10</span><h3>Build &amp; styling</h3><p>We run the trades on site with weekly progress reports, then spend a full day installing and styling before we hand you the keys.</p><img src="photos/hut.jpg" alt="" loading="lazy"></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq wrap" id="faq">
+  <div class="faq-grid">
+    <div>
+      <span class="label" style="color:var(--ember-ink)">Questions</span>
+      <h2 class="h2" style="margin-top:18px">Before you<br><em>book</em></h2>
+      <p>Anything else, put it in your brief below and we'll answer it on the call.</p>
+    </div>
+    <div>
+      <details open><summary>Do you work outside Lagos?<span class="plus" aria-hidden="true">+</span></summary><p class="ans">Yes, across Nigeria. Outside Lagos we plan extra site visits into the fee and run weekly video walkthroughs between them.</p></details>
+      <details><summary>Can you design just one room?<span class="plus" aria-hidden="true">+</span></summary><p class="ans">Yes. A single living room, bedroom or kitchen is our most common project and usually takes six to ten weeks.</p></details>
+      <details><summary>How is the design fee charged?<span class="plus" aria-hidden="true">+</span></summary><p class="ans">A fixed fee agreed after the discovery visit, paid in three stages. Furniture and materials are billed at trade price with every receipt shared.</p></details>
+      <details><summary>Do you build outdoor spaces and cabins too?<span class="plus" aria-hidden="true">+</span></summary><p class="ans">Yes. We design decks, pools, garden studios and glamping units, and manage the builders through to the final fit-out.</p></details>
+      <details><summary>Can you furnish a short-let ready for guests?<span class="plus" aria-hidden="true">+</span></summary><p class="ans">Yes. We spec durable fabrics, stock the full guest inventory and style for listing photos, so it can take bookings from handover.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANNER ============ -->
+<section class="planner dark" id="plan">
+  <div class="bg" id="plan-bg" aria-hidden="true"><img src="photos/hut.jpg" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="label">Plan a room</span><h2 class="h2">Tell us about<br>your <em>space</em></h2></div>
+      <p>Two minutes. Your brief builds itself on the right as you go.</p>
+    </div>
+    <div class="plan-grid">
+      <form class="plan-form" id="plan-form" novalidate>
+        <fieldset class="q">
+          <legend>Which space?</legend>
+          <div class="chips">
+            <input type="radio" name="space" id="sp1" value="Living room" checked><label for="sp1">Living room</label>
+            <input type="radio" name="space" id="sp2" value="Kitchen"><label for="sp2">Kitchen</label>
+            <input type="radio" name="space" id="sp3" value="Outdoor & pool"><label for="sp3">Outdoor &amp; pool</label>
+            <input type="radio" name="space" id="sp4" value="Whole home"><label for="sp4">Whole home</label>
+            <input type="radio" name="space" id="sp5" value="Short-let / retreat"><label for="sp5">Short-let / retreat</label>
+            <input type="radio" name="space" id="sp6" value="Cabin or small build"><label for="sp6">Cabin or small build</label>
+          </div>
+        </fieldset>
+        <fieldset class="q">
+          <legend>The feel you want</legend>
+          <div class="chips">
+            <input type="checkbox" name="feel" id="fe1" value="Warm timber" checked><label for="fe1">Warm timber</label>
+            <input type="checkbox" name="feel" id="fe2" value="Dark & moody"><label for="fe2">Dark &amp; moody</label>
+            <input type="checkbox" name="feel" id="fe3" value="Calm & pale"><label for="fe3">Calm &amp; pale</label>
+            <input type="checkbox" name="feel" id="fe4" value="Tropical & natural"><label for="fe4">Tropical &amp; natural</label>
+            <input type="checkbox" name="feel" id="fe5" value="Hotel-like"><label for="fe5">Hotel-like</label>
+          </div>
+        </fieldset>
+        <div class="q">
+          <label for="budget">Budget (design, furniture &amp; finishes)</label>
+          <div class="budget"><b id="budget-out">₦12m</b><span id="budget-tier">Single room, full finish</span></div>
+          <input type="range" id="budget" min="3" max="80" step="1" value="12">
+        </div>
+        <fieldset class="q">
+          <legend>When do you want to start?</legend>
+          <div class="chips">
+            <input type="radio" name="when" id="wh1" value="This month"><label for="wh1">This month</label>
+            <input type="radio" name="when" id="wh2" value="In 1–3 months" checked><label for="wh2">In 1–3 months</label>
+            <input type="radio" name="when" id="wh3" value="Later this year"><label for="wh3">Later this year</label>
+          </div>
+        </fieldset>
+        <div class="fields">
+          <label>Your name<input id="f-name" name="name" type="text" autocomplete="name" placeholder="Adaeze Okafor"></label>
+          <label>Phone or WhatsApp<input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+234 …"></label>
+          <label class="wide">Email<input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+        </div>
+      </form>
+      <aside class="brief" id="brief" aria-live="polite">
+        <div class="pre">
+          <span class="label" style="color:var(--ember)">Your brief</span>
+          <h3 id="b-title" style="margin-top:8px">Living room</h3>
+          <dl style="margin-top:16px">
+            <div><dt>Feel</dt><dd id="b-feel">Warm timber</dd></div>
+            <div><dt>Budget</dt><dd id="b-budget">₦12m</dd></div>
+            <div><dt>Start</dt><dd id="b-when">In 1–3 months</dd></div>
+            <div><dt>Likely timeline</dt><dd id="b-time">6–10 weeks</dd></div>
+          </dl>
+          <p class="est" style="margin-top:16px">Suggested service: <b id="b-svc">Living rooms</b></p>
+          <p class="err" id="b-err" hidden>Add your name and a phone number or email so we can reply.</p>
+          <button class="pill" type="submit" form="plan-form" style="width:100%;margin-top:16px">Send my brief</button>
+          <p class="note" style="margin-top:10px">We reply within two working days to book your discovery visit.</p>
+        </div>
+        <div class="done">
+          <b>Brief received</b>
+          <p class="note">Thanks, <span id="d-name">there</span>. We'll be in touch within two working days.</p>
+          <button class="pill ghost" type="button" id="b-reset" style="margin-top:16px">Edit brief</button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div><h4>Studio</h4><p>Interior architecture and design for homes, short-lets and retreats.</p></div>
+      <div><h4>Visit</h4><p>Lekki Phase 1<br>Lagos, Nigeria<br>Mon–Fri, 9:00–17:00</p></div>
+      <div><h4>Contact</h4><ul><li><a href="#plan">hello@lumberandlime.studio</a></li><li><a href="#plan">+234 800 000 0000</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+    </div>
+    <div class="bigmark" id="bigmark" aria-hidden="true">Lumber <span class="amp">&amp;</span> Lime</div>
+    <div class="f-bot"><span>© 2026 Lumber &amp; Lime Interiors</span><a href="#top" style="text-decoration:none">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+/* hero wordmark */
+(() => { const h = $('#wordmark'); let i = 0;
+  h.innerHTML = h.textContent.trim().split(' ').map(w => `<span class="w">${[...w].map(c => `<span class="ch${c==='&'?' amp':''}" style="--i:${i++}" aria-hidden="true">${c==='&'?'&amp;':c}</span>`).join('')}</span>`).join(''); })();
+
+/* hero film */
+const v = $('#film'), pp = $('#pp'), ico = $('#pp-ico'), chaps = $$('.chap');
+const PAUSE = '<rect x="1" y="1" width="3" height="8" fill="currentColor"/><rect x="6" y="1" width="3" height="8" fill="currentColor"/>', PLAY = '<path d="M2 1l7 4-7 4z" fill="currentColor"/>';
+const setIcon = () => { ico.innerHTML = v.paused ? PLAY : PAUSE; pp.setAttribute('aria-label', v.paused ? 'Play film' : 'Pause film'); };
+if (reduce){ v.removeAttribute('autoplay'); v.pause(); }
+v.addEventListener('play', setIcon); v.addEventListener('pause', setIcon);
+pp.addEventListener('click', () => v.paused ? v.play().catch(()=>{}) : v.pause());
+(function tick(){ const t = v.currentTime || 0;
+  chaps.forEach(c => { const s=+c.dataset.s, e=+c.dataset.e; c.querySelector('i').style.width = Math.min(1,Math.max(0,(t-s)/(e-s)))*100+'%'; c.classList.toggle('on', t>=s && t<e); });
+  requestAnimationFrame(tick); })(); setIcon();
+
+/* bar + progress */
+const bar = $('#bar'), prog = $('#progress'), heroEl = $('#top');
+const navIds = ['spaces','work','light','process','faq'];
+function onScroll(){
+  const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+  prog.style.transform = `scaleX(${max>0 ? y/max : 0})`;
+  bar.classList.toggle('show', y > heroEl.offsetHeight * .8);
+  let cur = null; navIds.forEach(id => { const el = document.getElementById(id); if (el.getBoundingClientRect().top < innerHeight*.4) cur = id; });
+  $$('.bar nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+cur));
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+$('#menu-btn').addEventListener('click', () => document.getElementById('spaces').scrollIntoView({behavior: reduce?'auto':'smooth'}));
+
+/* custom cursor */
+const cur = $('#cursor');
+if (fine && !reduce){
+  let cx = innerWidth/2, cy = innerHeight/2, tx = cx, ty = cy;
+  addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, {passive:true});
+  (function f(){ cx += (tx-cx)*.18; cy += (ty-cy)*.18; cur.style.translate = `${cx}px ${cy}px`; requestAnimationFrame(f); })();
+  $$('[data-cursor]').forEach(el => {
+    el.addEventListener('mouseenter', () => { cur.textContent = el.classList.contains('on') && el.classList.contains('panel') ? 'Explore' : el.dataset.cursor; cur.classList.add('on'); });
+    el.addEventListener('mouseleave', () => cur.classList.remove('on'));
+  });
+}
+
+/* spaces panels */
+const panels = $$('.panel');
+function openPanel(p){ panels.forEach(x => { const on = x === p; x.classList.toggle('on', on); x.setAttribute('aria-expanded', on); }); if (cur.classList.contains('on')) cur.textContent = 'Explore'; }
+panels.forEach(p => {
+  p.addEventListener('click', () => openPanel(p));
+  p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openPanel(p); } });
+  p.addEventListener('mouseenter', () => { if (fine && innerWidth > 760) openPanel(p); });
+});
+
+/* light through the day — kitchen */
+const keys = [ // hour, brightness, saturate, sepia, hue, tint rgba, lamp, sky
+  [6,   .55,.8, .15,-6, [255,150,150,.5],  .55, .1 ],
+  [8,   .9, 1,  .06, 0, [255,214,170,.35], .1,  .55],
+  [13, 1.08,1.02,0,  0, [215,232,255,.15], 0,   .35],
+  [17.5,.95,1.2,.22,-4, [255,150,60,.55],  .2,  .7 ],
+  [19.5,.55,1.05,.1, 6, [60,80,150,.6],    .75, 0  ],
+  [22, .36, .95,.12, 0, [15,25,65,.75],    1,   0  ],
+];
+const notes = h => h<7.5?'First light, cool and pink' : h<11?'Low sun across the walnut' : h<15.5?'Bright, even daylight' : h<18.5?'Golden hour through the trees' : h<20.5?'Blue hour, pendants warming up':'Pendants on, forest gone dark';
+const lerp = (a,b,t) => a+(b-a)*t;
+const img = $('#room-img'), tint = $('#tint'), lamp = $('#lamp'), sky = $('#sky'), hourIn = $('#hour'), clock = $('#clock'), note = $('#clock-note');
+function setHour(h){
+  let i = 0; while (i < keys.length-2 && h > keys[i+1][0]) i++;
+  const A = keys[i], B = keys[i+1], t = Math.min(1, Math.max(0,(h-A[0])/(B[0]-A[0])));
+  img.style.filter = `brightness(${lerp(A[1],B[1],t)}) saturate(${lerp(A[2],B[2],t)}) sepia(${lerp(A[3],B[3],t)}) hue-rotate(${lerp(A[4],B[4],t)}deg)`;
+  const c = A[5].map((x,k) => lerp(x,B[5][k],t));
+  tint.style.background = `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${c[3].toFixed(2)})`;
+  lamp.style.opacity = lerp(A[6],B[6],t).toFixed(2);
+  sky.style.opacity = lerp(A[7],B[7],t).toFixed(2);
+  const hh = Math.floor(h), mm = Math.round((h-hh)*60);
+  clock.textContent = `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
+  note.textContent = notes(h); hourIn.value = h;
+  $$('.light-ctrl .chip[data-h]').forEach(b => b.setAttribute('aria-pressed', Math.abs(+b.dataset.h - h) < .3));
+}
+let playing = null;
+const stopPlay = () => { if (playing){ cancelAnimationFrame(playing); playing = null; } $('#playday').textContent = '▶ Play the day'; };
+hourIn.addEventListener('input', e => { stopPlay(); setHour(+e.target.value); });
+function tweenHour(to){ const from = +hourIn.value, t0 = performance.now(), d = reduce ? 1 : 900;
+  (function step(now){ const k = Math.min(1,(now-t0)/d), e = 1-Math.pow(1-k,3); setHour(from+(to-from)*e); playing = k<1 ? requestAnimationFrame(step) : null; })(t0); }
+$$('.light-ctrl .chip[data-h]').forEach(b => b.addEventListener('click', () => { stopPlay(); tweenHour(+b.dataset.h); }));
+$('#playday').addEventListener('click', e => {
+  if (playing){ stopPlay(); return; }
+  e.target.textContent = '❚❚ Pause';
+  let h = +hourIn.value >= 21.9 ? 6 : +hourIn.value, last = performance.now();
+  (function step(now){ h += (now-last)/1000*2.2; last = now; if (h >= 22){ setHour(22); stopPlay(); return; } setHour(h); playing = requestAnimationFrame(step); })(last);
+});
+setHour(13);
+
+/* gallery marquee: drifts, speeds up with scroll, pauses on hover */
+(() => {
+  const rows = [[$('#row-a'), -1], [$('#row-b'), 1]];
+  rows.forEach(([r]) => r.innerHTML += r.innerHTML);
+  if (reduce){ $$('.rows').forEach(x => x.style.overflowX = 'auto'); return; }
+  const st = rows.map(([r, dir]) => ({r, dir, x: dir > 0 ? -r.scrollWidth/2 : 0, hover:false}));
+  st.forEach(s => { s.r.addEventListener('mouseenter', () => s.hover = true); s.r.addEventListener('mouseleave', () => s.hover = false); });
+  let lastY = scrollY, boost = 0, visible = true;
+  new IntersectionObserver(([e]) => visible = e.isIntersecting).observe($('#gallery'));
+  (function f(){
+    const dy = scrollY - lastY; lastY = scrollY;
+    boost = lerp(boost, Math.min(30, Math.abs(dy)) , .1);
+    if (visible) st.forEach(s => {
+      const half = s.r.scrollWidth/2, spd = s.hover ? 0 : (.55 + boost*.35);
+      s.x += s.dir * spd;
+      if (s.x <= -half) s.x += half; if (s.x >= 0) s.x -= half;
+      s.r.style.transform = `translate3d(${s.x}px,0,0)`;
+    });
+    requestAnimationFrame(f);
+  })();
+})();
+
+/* process: active step swaps the photo */
+(() => {
+  const steps = $$('.step'), imgs = $$('#proc-media img'), badge = $('#proc-badge'), num = $('#proc-num');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const i = steps.indexOf(e.target);
+    steps.forEach((s,k) => s.classList.toggle('on', k === i));
+    imgs.forEach((m,k) => m.classList.toggle('on', k === i));
+    badge.textContent = e.target.dataset.w; num.textContent = i+1;
+  }), {rootMargin:'-45% 0px -45% 0px'});
+  steps.forEach(s => io.observe(s));
+})();
+
+/* zoom reveal: sticky stage driven by its own scroll position (no pinning library) */
+(() => {
+  const sec = $('#studio'), im = $('#rv-img'), ph = $('#rv-photo'), l = $('#rv-l'), r = $('#rv-r'), top = $('.rv-top'), cap = $('#rv-cap');
+  const clamp = (x) => Math.min(1, Math.max(0, x));
+  const ease = t => t<.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  let counted = false;
+  function countUp(){
+    counted = true;
+    $$('[data-count]').forEach(el => {
+      const to = +el.dataset.count, suf = el.dataset.suf || '', t0 = performance.now();
+      (function f(n){ const k = Math.min(1,(n-t0)/1400), e = 1-Math.pow(1-k,3); el.textContent = Math.round(to*e) + suf; if (k<1) requestAnimationFrame(f); })(t0);
+    });
+  }
+  function update(){
+    const rect = sec.getBoundingClientRect(), total = rect.height - innerHeight;
+    const p = reduce ? 1 : clamp(-rect.top / Math.max(1,total));
+    const mob = innerWidth <= 760, z = ease(clamp(p/.62));
+    const t0 = mob ? 27 : 17, s0 = mob ? 14 : 35, r0 = mob ? 16 : 18;
+    const T = (t0*(1-z)).toFixed(2), S = (s0*(1-z)).toFixed(2), R = (r0*(1-z)).toFixed(1);
+    im.style.clipPath = `inset(${T}% ${S}% ${T}% ${S}% round ${R}px)`;
+    ph.style.transform = `scale(${(1.35 - .35*z).toFixed(3)})`;
+    const w = clamp(p/.3);
+    l.style.transform = mob ? `translateY(${-120*w}%)` : `translateX(${-60*w}%)`;
+    r.style.transform = mob ? `translateY(${120*w}%)` : `translateX(${60*w}%)`;
+    l.style.opacity = r.style.opacity = (1-w).toFixed(2);
+    top.style.opacity = (1 - clamp(p/.25)).toFixed(2);
+    im.style.setProperty('--shade', clamp((p-.4)/.15).toFixed(2));
+    const c = clamp((p-.48)/.12);
+    cap.style.opacity = c.toFixed(2); cap.style.transform = `translateY(${(1-c)*30}px)`;
+    if (c > .5 && !counted && !reduce) countUp();
+  }
+  if (reduce) sec.style.height = 'auto';
+  addEventListener('scroll', update, {passive:true}); addEventListener('resize', update); update();
+})();
+
+/* planner */
+const form = $('#plan-form'), brief = $('#brief');
+const fmt = m => m >= 80 ? '₦80m+' : `₦${m}m`;
+function tier(m, space){
+  if (space === 'Whole home') return m < 25 ? 'Tight for a whole home' : m < 50 ? 'Whole home, core rooms' : 'Whole home, full finish';
+  if (space === 'Cabin or small build') return m < 25 ? 'Interior fit-out only' : 'Structure and fit-out';
+  return m < 6 ? 'Refresh and styling' : m < 15 ? 'Single room, full finish' : m < 30 ? 'Room with custom joinery' : 'Several rooms or a full renovation';
+}
+const svcFor = {'Living room':'Living rooms','Kitchen':'Kitchens','Outdoor & pool':'Outdoor & pool decks','Whole home':'Full interior design','Short-let / retreat':'Retreats & short-lets','Cabin or small build':'Cabins & small builds'};
+const timeFor = {'Living room':'6–10 weeks','Kitchen':'10–12 weeks','Outdoor & pool':'8–16 weeks','Whole home':'14–24 weeks','Short-let / retreat':'6–8 weeks','Cabin or small build':'12–20 weeks'};
+function updateBrief(){
+  const space = form.space.value, m = +$('#budget').value, feel = $$('input[name=feel]:checked').map(x => x.value);
+  $('#budget-out').textContent = fmt(m); $('#budget-tier').textContent = tier(m, space);
+  $('#b-title').textContent = space; $('#b-feel').textContent = feel.length ? feel.join(', ') : 'Open to ideas';
+  $('#b-budget').textContent = fmt(m); $('#b-when').textContent = form.when.value;
+  $('#b-time').textContent = timeFor[space]; $('#b-svc').textContent = svcFor[space];
+}
+form.addEventListener('input', updateBrief); form.addEventListener('change', updateBrief); updateBrief();
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('#f-name').value.trim(), ok = name && ($('#f-phone').value.trim() || $('#f-email').value.trim());
+  $('#b-err').hidden = !!ok; if (!ok) return;
+  $('#d-name').textContent = name.split(' ')[0]; brief.classList.add('sent');
+});
+$('#b-reset').addEventListener('click', () => brief.classList.remove('sent'));
+
+/* ---------- GSAP scroll choreography ---------- */
+if (window.gsap && window.ScrollTrigger && !reduce){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // hero recedes
+  gsap.to('.hero', {scale:.92, borderRadius:40, ease:'none', scrollTrigger:{trigger:'.hero-shell', start:'top top', end:'bottom top', scrub:true}});
+  gsap.to('#hero-centre', {yPercent:-45, opacity:.1, ease:'none', scrollTrigger:{trigger:'.hero-shell', start:'top top', end:'bottom top', scrub:true}});
+
+
+  // spaces: panels rise in
+  gsap.from('.panel', {yPercent:18, duration:1.1, ease:'power3.out', stagger:.08, scrollTrigger:{trigger:'#panels', start:'top 85%'}});
+  gsap.from('.sec-head .h2', {y:40, duration:1, ease:'power3.out', stagger:.1, scrollTrigger:{trigger:'#spaces', start:'top 85%'}});
+
+  // stacking project cards
+  const cards = $$('.proj');
+  cards.forEach((card, i) => {
+    gsap.fromTo(card.querySelector('.ph img'), {scale:1.18}, {scale:1, ease:'none', scrollTrigger:{trigger:card, start:'top bottom', end:'top 84px', scrub:true}});
+    if (i === cards.length - 1) return;
+    const next = cards[i+1];
+    gsap.to(card, {scale:.9 + i*.02, ease:'none', scrollTrigger:{trigger:next, start:'top bottom', end:`top ${84 + (i+1)*18}px`, scrub:true}});
+    gsap.to(card.querySelector('.shade'), {opacity:.55, ease:'none', scrollTrigger:{trigger:next, start:'top bottom', end:`top ${84 + (i+1)*18}px`, scrub:true}});
+  });
+
+  // light: room drifts up and its image slowly zooms
+  gsap.fromTo('#room', {y:60, rotate:-1.5}, {y:-30, rotate:0, ease:'none', scrollTrigger:{trigger:'#light', start:'top bottom', end:'bottom top', scrub:true}});
+  ScrollTrigger.create({trigger:'#room', start:'top 70%', once:true, onEnter:() => { if (+hourIn.value === 13) tweenHour(17.75); }});
+
+  // planner background parallax
+  gsap.fromTo('#plan-bg', {yPercent:-8}, {yPercent:8, ease:'none', scrollTrigger:{trigger:'#plan', start:'top bottom', end:'bottom top', scrub:true}});
+
+  // footer wordmark
+  gsap.from('#bigmark', {yPercent:45, ease:'none', scrollTrigger:{trigger:'footer', start:'top bottom', end:'bottom bottom', scrub:true}});
+}
+</script>
+
+</body>
+</html>
