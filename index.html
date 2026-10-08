@@ -289,7 +289,7 @@ footer{background:var(--pine);color:var(--mist);padding-block:clamp(40px,6vw,80p
 @media (max-width:760px){
   .panels{flex-direction:column;height:auto}
   .panel{flex:none;height:96px;transition:height .7s var(--ease)}
-  .panel.on{height:460px}
+  .panel.on{flex:none;height:min(460px,72svh)}
   .panel .vl{writing-mode:horizontal-tb;transform:none;left:20px;bottom:auto;top:50%;translate:0 -50%}
   .proj{grid-template-columns:1fr;grid-template-rows:42% 1fr;height:min(86svh,700px);min-height:600px}
   .proj .txt{gap:12px}
